@@ -1,0 +1,23 @@
+.treeview-container {
+  list-style: none;
+  position: relative;
+  padding: 0;
+  left: 1%;
+}
+
+.tree-item div {
+  display: flex;
+  align-items: center;
+}
+
+.tree-item__icon-container {
+  width: 2rem;
+}
+
+.tree-item__label-container {
+  min-width: 8rem;
+}
+
+.tree-item__container {
+  cursor: pointer;
+}
