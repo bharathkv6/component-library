@@ -1,0 +1,24 @@
+.rootComment__input-container {
+  display: flex;
+  align-items: center;
+}
+
+.rootComment__hr {
+  width: 50%;
+  margin: 1rem 0;
+}
+.comments-container {
+  margin: 1rem;
+}
+.comments-list {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  position: relative;
+  left: 2%;
+  margin-top: 0.5rem;
+}
+
+.comments-list > li {
+  margin-top: 0.5rem;
+}

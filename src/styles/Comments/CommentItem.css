@@ -1,0 +1,35 @@
+.comment-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-item__info span {
+  font-size: 0.7rem;
+  position: relative;
+  left: 0.3rem;
+  color: darkcyan;
+  font-weight: bold;
+}
+
+.comment-item__info p {
+  margin: 0;
+  border: 1px solid black;
+  min-width: 5rem;
+  padding: 0.2rem 1rem;
+  border-radius: 0.5rem;
+  width: fit-content;
+}
+
+.reply-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 0.7rem;
+  color: darkcyan;
+  cursor: pointer;
+}
+
+.reply-input {
+  position: relative;
+  left: 0.3rem;
+  margin-top: 0.5rem;
+}
