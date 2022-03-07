@@ -16,6 +16,7 @@ const Comments: React.FC<{ data: CommentsType }> = props => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const comment: CommentItemType = {
+      id: commentsList.length.toString(),
       author: 'ZZZ',
       comment: commentText,
       children: []
@@ -23,6 +24,22 @@ const Comments: React.FC<{ data: CommentsType }> = props => {
     setCommentText('')
     setCommentsList(prevState => [...prevState, comment]);
   };
+
+  const addNewCommentHelper = (commentsList:CommentsType, comment: CommentItemType, parentId: string) => {
+    for(let i=0;i<commentsList.length;i++) {
+      if(commentsList[i].id === parentId) {
+        commentsList[i].children.push(comment);
+      } else {
+        if(commentsList[i].children.length > 0) {
+          addNewCommentHelper(commentsList[i].children, comment, parentId);
+        }
+      }
+    }
+  }
+
+  const addNewComment = (comment: CommentItemType, parentId: string) => {
+    addNewCommentHelper(commentsList, comment, parentId);
+  }
 
   return (
     <div className='comments-container'>
@@ -43,7 +60,7 @@ const Comments: React.FC<{ data: CommentsType }> = props => {
       <hr className="rootComment__hr"></hr>
       <ul className='comments-list'>
         {commentsList.length > 0 &&
-          commentsList.map((commentItem, index) => <CommentItem key={index} data={commentItem} />)}
+          commentsList.map((commentItem, index) => <CommentItem addNewComment={addNewComment}  key={index} data={commentItem} />)}
       </ul>
     </div>
   );

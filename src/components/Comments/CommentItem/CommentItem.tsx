@@ -2,8 +2,12 @@ import { CommentItem as CommentItemType } from '../../../types/Comments';
 import '../../../styles/Comments/CommentItem.css';
 import { useState } from 'react';
 
-const CommentItem: React.FC<{ data: CommentItemType }> = props => {
-  const { author, children, comment } = props.data;
+const CommentItem: React.FC<{
+  data: CommentItemType;
+  addNewComment: (comment: CommentItemType, parentId: string) => void;
+}> = props => {
+  const { author, children, comment, id } = props.data;
+  const { addNewComment } = props;
   const [showBtn, setShowBtn] = useState(false);
   const [value, setValue] = useState('');
 
@@ -18,6 +22,14 @@ const CommentItem: React.FC<{ data: CommentItemType }> = props => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setShowBtn(false);
+    const comment: CommentItemType = {
+      id: `${id}${children.length+1}`,
+      author: 'ZZZ',
+      children: [],
+      comment: value
+    }
+    addNewComment(comment, id);
   };
 
   return (
@@ -34,7 +46,7 @@ const CommentItem: React.FC<{ data: CommentItemType }> = props => {
       </div>
       <ul>
         {children.map((comment, index) => (
-          <CommentItem key={index} data={comment} />
+          <CommentItem addNewComment={addNewComment} key={index} data={comment} />
         ))}
         {showBtn && (
           <form className="reply-input" onSubmit={onSubmit}>
